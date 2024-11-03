@@ -2,10 +2,10 @@ import './style.css'
 import * as THREE from 'three'
 import studio from '@theatre/studio'
 import { getProject, types } from '@theatre/core'
+import projectState from './state.json'
 
-studio.initialize()
 const scene = new THREE.Scene()
-const project = getProject('THREE.js x Theatre.js')
+const project = getProject('THREE.js x Theatre.js', { state: projectState })
 const sheet = project.sheet('Animated scene')
 
 const geometry = new THREE.TorusKnotGeometry(10, 3, 300, 16)
@@ -35,6 +35,7 @@ torusKnotObj.onValuesChange((values) => {
   mesh.rotation.set(x * Math.PI, y * Math.PI, z * Math.PI)
 })
 
+project.ready.then(() => sheet.sequence.play({ iterationCount: Infinity }))
 
 /**
  * Camera

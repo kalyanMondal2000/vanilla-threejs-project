@@ -2,7 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./style.css");
 
+import * as THREE from './three'
 
+import projectState from './state.json'
 
 
 var scene = new THREE.Scene();

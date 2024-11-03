@@ -1,6 +1,6 @@
 import './style.css'
 import * as THREE from 'three'
-import studio from '@theatre/studio'
+
 import { getProject, types } from '@theatre/core'
 import projectState from './state.json'
 

@@ -4,11 +4,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 import './style.css'
 import * as THREE from 'three'
 import core_1 from "@theatre/core"
-import { getProject, types } from '@theatre/core'
+import {getProject, types} from '@theatre/core'
 import state_json_1 from './state.json'
 
 var scene = new THREE.Scene();
-var project = (0, core_1.getProject)('THREE.js x Theatre.js', { state: state_json_1.default });
+//var project = (0, core_1.getProject)('THREE.js x Theatre.js', { state: state_json_1.default });
+var project = getProject('THREE.js x Theatre.js', { state: state_json_1 });
 var sheet = project.sheet('Animated scene');
 var geometry = new THREE.TorusKnotGeometry(10, 3, 300, 16);
 var material = new THREE.MeshStandardMaterial({ color: '#f00' });
@@ -21,10 +22,10 @@ scene.add(mesh);
 var torusKnotObj = sheet.object('Torus Knot', {
     // Note that the rotation is in radians
     // (full rotation: 2 * Math.PI)
-    rotation: core_1.types.compound({
-        x: core_1.types.number(mesh.rotation.x, { range: [-2, 2] }),
-        y: core_1.types.number(mesh.rotation.y, { range: [-2, 2] }),
-        z: core_1.types.number(mesh.rotation.z, { range: [-2, 2] }),
+    rotation: types.compound({
+        x: types.number(mesh.rotation.x, { range: [-2, 2] }),
+        y: types.number(mesh.rotation.y, { range: [-2, 2] }),
+        z: types.number(mesh.rotation.z, { range: [-2, 2] }),
     }),
 });
 torusKnotObj.onValuesChange(function (values) {

@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 
 import './style.css'
-import * as THREE from 'three'
+import * as THREE from './three'
 import core_1 from "@theatre/core"
 import {getProject, types} from '@theatre/core'
 import state_json_1 from './state.json'

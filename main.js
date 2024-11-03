@@ -1,9 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./style.css");
-var THREE = require("three");
-var core_1 = require("@theatre/core");
-var state_json_1 = require("./state.json");
+
+import * as THREE from 'three'
+
+import { getProject, types } from '@theatre/core'
+import projectState from './state.json'
+
+
 var scene = new THREE.Scene();
 var project = (0, core_1.getProject)('THREE.js x Theatre.js', { state: state_json_1.default });
 var sheet = project.sheet('Animated scene');

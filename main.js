@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 require("./style.css");
 
-import * as THREE from 'three'
+import * as THREE from './three'
 
 import { getProject, types } from '@theatre/core'
 import projectState from './state.json'

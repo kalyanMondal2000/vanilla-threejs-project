@@ -1,5 +1,40 @@
 import './style.css'
 import * as THREE from 'three'
+import studio from '@theatre/studio'
+import { getProject, types } from '@theatre/core'
+
+studio.initialize()
+const scene = new THREE.Scene()
+const project = getProject('THREE.js x Theatre.js')
+const sheet = project.sheet('Animated scene')
+
+const geometry = new THREE.TorusKnotGeometry(10, 3, 300, 16)
+const material = new THREE.MeshStandardMaterial({color: '#f00'})
+material.color = new THREE.Color('#049ef4')
+material.roughness = 0.5
+
+const mesh = new THREE.Mesh(geometry, material)
+mesh.castShadow = true
+mesh.receiveShadow = true
+scene.add(mesh)
+
+
+const torusKnotObj = sheet.object('Torus Knot', {
+  // Note that the rotation is in radians
+  // (full rotation: 2 * Math.PI)
+  rotation: types.compound({
+    x: types.number(mesh.rotation.x, { range: [-2, 2] }),
+    y: types.number(mesh.rotation.y, { range: [-2, 2] }),
+    z: types.number(mesh.rotation.z, { range: [-2, 2] }),
+  }),
+})
+
+torusKnotObj.onValuesChange((values) => {
+  const { x, y, z } = values.rotation
+
+  mesh.rotation.set(x * Math.PI, y * Math.PI, z * Math.PI)
+})
+
 
 /**
  * Camera
@@ -18,20 +53,12 @@ camera.position.z = 50
  * Scene
  */
 
-const scene = new THREE.Scene()
+
 
 /*
  * TorusKnot
  */
-const geometry = new THREE.TorusKnotGeometry(10, 3, 300, 16)
-const material = new THREE.MeshStandardMaterial({color: '#f00'})
-material.color = new THREE.Color('#049ef4')
-material.roughness = 0.5
 
-const mesh = new THREE.Mesh(geometry, material)
-mesh.castShadow = true
-mesh.receiveShadow = true
-scene.add(mesh)
 
 /*
  * Lights

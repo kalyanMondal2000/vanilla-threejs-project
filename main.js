@@ -2,11 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 
 import './style.css'
-import * as THREE from './three'
-import core_1 from "@theatre/core"
-import {getProject, types} from '@theatre/core'
+import * as THREE from '/node_modules/three/build/three.module.js'
+import {getProject, types} from '/node_modules/@theatre/core'
 import state_json_1 from './state.json'
 
+file.type = 'text/javascript'
 var scene = new THREE.Scene();
 //var project = (0, core_1.getProject)('THREE.js x Theatre.js', { state: state_json_1.default });
 var project = getProject('THREE.js x Theatre.js', { state: state_json_1 });

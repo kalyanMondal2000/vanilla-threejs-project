@@ -1,6 +1,7 @@
 import './style.css'
 import * as THREE from 'three'
 
+<<<<<<< HEAD:main.ts
 import { getProject, types } from '@theatre/core'
 import projectState from './state.json'
 
@@ -37,6 +38,24 @@ torusKnotObj.onValuesChange((values) => {
 
 project.ready.then(() => sheet.sequence.play({ iterationCount: Infinity }))
 
+=======
+//import studio from '@theatre/studio'
+import {getProject, types} from '@theatre/core'
+import state from './state.json'
+
+/**
+ * Theatre.js */
+
+// Initialize the studio
+//studio.initialize()
+
+// Create a project for the animation
+const project = getProject('THREE.js x Theatre.js', {state})
+
+// Create a sheet
+const sheet = project.sheet('Animated scene')
+
+>>>>>>> 21d5fe5 (made 2d models):src/main.ts
 /**
  * Camera
  */
@@ -59,7 +78,30 @@ camera.position.z = 50
 /*
  * TorusKnot
  */
+<<<<<<< HEAD:main.ts
+=======
+const geometry = new THREE.TorusKnotGeometry(10, 3, 300, 16)
+const material = new THREE.MeshStandardMaterial()
+material.color = new THREE.Color('#049ef4')
+material.roughness = 0.5
+>>>>>>> 21d5fe5 (made 2d models):src/main.ts
 
+
+const torusKnotObj = sheet.object('Torus Knot', {
+  // Note that the rotation is in radians
+  // (full rotation:  2 * Math.PI)
+  rotation: types.compound({
+    x: types.number(mesh.rotation.x, {range: [-2, 2]}),
+    y: types.number(mesh.rotation.y, {range: [-2, 2]}),
+    z: types.number(mesh.rotation.z, {range: [-2, 2]}),
+  }),
+})
+
+torusKnotObj.onValuesChange((values) => {
+  const {x, y, z} = values.rotation
+
+  mesh.rotation.set(x * Math.PI, y * Math.PI, z * Math.PI)
+})
 
 /*
  * Lights
@@ -69,8 +111,9 @@ camera.position.z = 50
 const ambientLight = new THREE.AmbientLight('#ffffff', 0.5)
 scene.add(ambientLight)
 
-// Point light
-const directionalLight = new THREE.DirectionalLight('#ff0000', 30 /* , 0, 1 */)
+// Directional light
+const directionalLight = new THREE.DirectionalLight('#ff0000')
+directionalLight.intensity = 30
 directionalLight.position.y = 20
 directionalLight.position.z = 20
 
@@ -136,3 +179,6 @@ window.addEventListener(
   },
   false,
 )
+
+// Play the animation on repeat
+project.ready.then(() => sheet.sequence.play({iterationCount: Infinity}))

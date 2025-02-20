@@ -1,7 +1,7 @@
 import './style.css'
 import * as THREE from 'three'
 
-import studio from '@theatre/studio'
+//import studio from '@theatre/studio'
 import {getProject, types} from '@theatre/core'
 import state from './state.json'
 
@@ -9,7 +9,7 @@ import state from './state.json'
  * Theatre.js */
 
 // Initialize the studio
-studio.initialize()
+//studio.initialize()
 
 // Create a project for the animation
 const project = getProject('THREE.js x Theatre.js', {state})

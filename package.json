@@ -9,13 +9,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@theatre/core": "^0.7.2",
-    "@theatre/studio": "^0.7.2",
-    "@types/three": "^0.141.0",
+    "@theatre/studio": "0.5.0-insiders.d1ef903",
+    "@theatre/core": "0.5.0-insiders.d1ef903",
     "three": "^0.142.0",
-    "typescript": "^4.9.5"
+    "typescript": "^4.5.4",
+    "@types/three": "^0.141.0"
   },
   "devDependencies": {
-    "vite": "^5.4.10"
+    "vite": "^2.9.9"
   }
 }
